@@ -1,4 +1,4 @@
-name: GitHub Environment variables
+name: GitHub Conditional steps
 
 on:
   push:
