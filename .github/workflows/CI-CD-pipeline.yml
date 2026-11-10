@@ -53,14 +53,10 @@ jobs:
     if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/download-artifact@v4
-        with:
-          name: build
-          path: dist/
       - name: Verify deployment script
         run: |
           pwd
           ls -la
           test -f deploy-dist.sh
       - name: Deploy to production
-        run: bash ./deploy-dist.sh
+        run: ./deploy-dist.sh
