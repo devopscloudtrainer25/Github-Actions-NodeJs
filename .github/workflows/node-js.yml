@@ -8,16 +8,14 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
-    strategy:
-      fail-fast: false
-      matrix:
-        node: [24]
     steps:
-      - uses: actions/checkout@v4
-
-      - uses: actions/setup-node@v4
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Setup Node Js
+        uses: actions/setup-node@v4
         with:
-          node-version: ${{ matrix.node }}
-
-      - run: npm ci
-      - run: npm test
+          node-version: 24
+      - name: Run NPM CI
+        run: npm ci
+      - name: RUN NPM test
+        run: npm test
