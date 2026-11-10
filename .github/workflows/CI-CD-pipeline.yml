@@ -58,4 +58,4 @@ jobs:
           name: build
           path: dist/
       - name: Deploy to production
-        run: ./deploy.sh
+        run: bash ./deploy-dist.sh
