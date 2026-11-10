@@ -47,21 +47,16 @@ jobs:
         with:
           name: build
           path: dist/
-  
-  pre-deploy:
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-       - uses: actions/download-artifact@v4
-         with:
-           name: build
-           path: dist/
 
   deploy:
-    needs: pre-deploy
+    needs: build
     if: github.ref == 'refs/heads/main'  
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          name: build
+          path: dist/
       - name: Deploy to production
         run: ./deploy-dist.sh
