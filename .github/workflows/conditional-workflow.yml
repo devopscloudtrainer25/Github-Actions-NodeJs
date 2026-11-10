@@ -1,0 +1,23 @@
+name: GitHub Environment variables
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    env:
+      DATABASE_URL: ${{ secrets.DATABASE_URL }}
+      API_KEY: ${{ secrets.API_KEY }}
+    
+    steps:
+      - uses: actions/checkout@v4
+      - name: Deploy to production
+        if: github.ref == 'refs/heads/main'
+        run: ./deploy-prod.sh
+  
+      - name: Deploy to staging
+        if: github.ref == 'refs/heads/develop'
+        run: ./deploy-staging.sh
