@@ -2,7 +2,7 @@ name: Hello Actions
 
 on:
   push:
-    branches: [feature-actions]
+    branches: [ main ]
   workflow_dispatch:
 
 jobs:
