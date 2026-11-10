@@ -57,5 +57,10 @@ jobs:
         with:
           name: build
           path: dist/
+      - name: Verify deployment script
+        run: |
+          pwd
+          ls -la
+          test -f deploy-dist.sh
       - name: Deploy to production
         run: bash ./deploy-dist.sh
