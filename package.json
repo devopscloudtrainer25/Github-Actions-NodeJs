@@ -1,8 +1,12 @@
 {
   "name": "hello-actions",
   "version": "1.0.0",
-  "main": "index.js",
-  "scripts": {
-    "test": "node --test"
+  "lockfileVersion": 3,
+  "requires": true,
+  "packages": {
+    "": {
+      "name": "hello-actions",
+      "version": "1.0.0"
+    }
   }
 }
