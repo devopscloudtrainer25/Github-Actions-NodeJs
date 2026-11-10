@@ -1,0 +1,29 @@
+name: Reusable workflow calling
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Setup Node Js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+      - name: Run NPM CI
+        run: npm ci
+      - name: RUN NPM test
+        run: npm test
+  
+  deploy-staging:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: ./.github/workflows/reusable-deploy.yml
+        with:
+          environment: staging
+        secrets:
+          deploy-token: ${{ secrets.STAGING_TOKEN }}
